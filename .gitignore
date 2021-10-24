@@ -41,3 +41,6 @@ ormconfig.json
 
 #environment varible
 .env
+
+#docker
+.docker

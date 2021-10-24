@@ -1,0 +1,25 @@
+version: "3.8"
+
+services:
+  service:
+    build:
+      context: .
+    container_name: service
+    env_file:
+      - .env
+    ports:
+      - "3000:3000"
+    restart: always
+    depends_on:
+      - db
+
+  db:
+    image: mysql:8.0
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+    volumes:
+      - .docker/data/db:/var/lib/mysql
+    ports:
+      - 3307:3306
